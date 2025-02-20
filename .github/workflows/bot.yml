@@ -1,0 +1,24 @@
+name: BotQuick Supremo
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Executa a cada 30 minutos
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt || echo "Nenhum pacote necessário"
+
+      - name: Run Bot
+        run: python bot.py
